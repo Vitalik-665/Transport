@@ -1,0 +1,24 @@
+<% @cart.orderables.each do |orderable| %>
+  <% transport = orderable.transport %>
+  <div id="<%= "cart-#{transport.id}" %>">
+    <div style="display:flex;justify-content:space-between;margin: 0em 5em;">
+      <strong>Название:</strong>
+      <%= transport.title %>
+      <strong>Описание:</strong>
+      <%= transport.description %>
+      <strong>Цена:</strong>
+      <%= transport.price %>
+      <%= form_with(url: cart_add_path) do |f| %>
+        <%= f.hidden_field :id, value: transport.id %>
+        <%= f.number_field :quantity, value: orderable.quantity, min: 0 %>
+        <%= f.submit "Добавить в закладки" %>
+      <% end %>
+      <%= form_with(url: cart_remove_path) do |f| %>
+        <%= f.hidden_field :id, value: orderable.id %>
+        <%= f.submit "V" %>
+      <% end %>
+      <strong>Всего за доставку грузов:</strong>
+      <%= orderable.total %>
+    </div>
+  </div>
+<% end %>

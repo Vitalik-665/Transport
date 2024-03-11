@@ -1,0 +1,8 @@
+<h1>Ваши закладки</h1>
+<% @cart.orderables.each do |orderable| %>
+  <% transport = orderable.transport %>
+  <p><%= transport.title %> * <%= orderable.quantity %> = $<%= transport.price * orderable.quantity %></p>
+
+       <%= render partial: "cart/cart" if @render_cart %>
+<% end %>
+<p>Ваша общая сумма за доставки равна $<%= @cart.total %> </p>

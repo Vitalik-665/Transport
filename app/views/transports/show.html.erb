@@ -1,0 +1,9 @@
+<h1>Информация о доставках</h1>
+
+<p><strong>Название:</strong> <%= @transport.title %></p>
+<p><strong>Описание:</strong> <%= @transport.description %></p>
+<p><strong>Цена:</strong> <%= @transport.price %></p>
+<p><strong>Локация:</strong> <%= @transport.location %></p>
+
+<p><%= link_to 'Редактировать', edit_transport_path(@transport) %></p>
+<p><%= link_to 'Назад', transports_path %></p>

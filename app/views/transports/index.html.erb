@@ -1,0 +1,34 @@
+<h1>Список доставок грузов</h1>
+
+<table>
+  <thead>
+    <tr>
+      <th>Название</th>
+      <th>Описание</th>
+      <th>Цена</th>
+      <th>Локация</th>
+      <th colspan="5"></th>
+    </tr>
+  </thead>
+  
+  <tbody>
+    <% @transports.each do |transport| %>
+      <tr>
+        <td><%= transport.title %></td>
+        <td><%= transport.description %></td>
+        <td><%= transport.price %></td>
+        <td><%= transport.location %></td>
+        <td><%= link_to 'Просмотреть', transport %></td>
+        <td><%= link_to 'Редактировать', edit_transport_path(transport) %></td>
+        <td><%= link_to 'Удалить', transport, 'data-turbo-method': :delete, data: { confirm: 'Вы уверены?' } %></td>
+         <%= form_with(url: cart_add_path) do |f| %>
+      <td><%= f.hidden_field :id, value: transport.id %>
+      <%= f.number_field :quantity, value: 0, min: 1 %>
+      <%= f.submit "Добавить в закладки" %></td>
+    <% end %> 
+      </tr>
+    <% end %>
+  </tbody>
+</table>
+
+<p><%= link_to 'Добавить доставку груза', new_transport_path %></p>

@@ -1,0 +1,9 @@
+<%= turbo_frame_tag "cart" do %>
+  <h1>Закладки</h1>
+  <% if @cart.orderables.count > 0 %>
+    <%= render "cart/orderables" %>
+    <p>Всего за доставки: <%= @cart.total %></p>
+  <% else %>
+    <p>Ваши закладки пусты</p>
+  <% end %>
+<% end %>
